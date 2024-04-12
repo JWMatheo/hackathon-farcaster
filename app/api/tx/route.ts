@@ -18,8 +18,10 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
 
   const data = encodeFunctionData({
     abi: abi,
-    functionName: 'like',
-    // args: [parseEther('1'), 'Coffee all day!'],
+    functionName: 'whitelist',
+    args: [
+      ['0x77946973097e2555edAb75dC8cA75884ab7b3FB0', '0x487091A058Bf7b679908C33E3cb092D6eEA9444b'],
+    ],
   });
 
   const txData: FrameTransactionResponse = {

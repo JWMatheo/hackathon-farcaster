@@ -3,28 +3,21 @@
  * sake of minimizing bytes downloaded.
  */
 export const abi = [
-  { inputs: [], name: 'AlreadyCommented', type: 'error' },
-  { inputs: [], name: 'AlreadyLiked', type: 'error' },
-  { inputs: [], name: 'MaxWhitelistedReached', type: 'error' },
-  { inputs: [], name: 'comment', outputs: [], stateMutability: 'nonpayable', type: 'function' },
+  { inputs: [], name: 'CannotWhitelistMoreThan25Addresses', type: 'error' },
   {
-    inputs: [{ internalType: 'address', name: '', type: 'address' }],
-    name: 'isWhitelisted',
-    outputs: [
-      { internalType: 'bool', name: 'isLike', type: 'bool' },
-      { internalType: 'bool', name: 'isComment', type: 'bool' },
-    ],
-    stateMutability: 'view',
+    inputs: [{ internalType: 'address[]', name: '_toWhitelist', type: 'address[]' }],
+    name: 'whitelist',
+    outputs: [],
+    stateMutability: 'nonpayable',
     type: 'function',
   },
-  { inputs: [], name: 'like', outputs: [], stateMutability: 'nonpayable', type: 'function' },
   {
-    inputs: [],
-    name: 'whitelistCounter',
-    outputs: [{ internalType: 'int8', name: '', type: 'int8' }],
+    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    name: 'whitelistArray',
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
   },
 ] as const;
 
-export const contractAddress = '0x4fa88c01F2065c6F509E1aD0B653dd49Dd9d90A9';
+export const contractAddress = '0xBb9a39C8C100d36055EC237dc04B3C613ee0B028';
