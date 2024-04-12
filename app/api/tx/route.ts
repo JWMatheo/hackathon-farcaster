@@ -4,7 +4,7 @@ import { encodeFunctionData, parseEther } from 'viem';
 import { base } from 'viem/chains';
 import { abi, contractAddress } from '../../_contracts/Whitelist';
 import { BUY_MY_COFFEE_CONTRACT_ADDR } from '../../config';
-import type { FrameTransactionEthSendParams } from '@coinbase/onchainkit/frame';
+import type { FrameTransactionResponse } from '@coinbase/onchainkit/frame';
 
 async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
   const body: FrameRequest = await req.json();
@@ -22,12 +22,15 @@ async function getResponse(req: NextRequest): Promise<NextResponse | Response> {
     // args: [parseEther('1'), 'Coffee all day!'],
   });
 
-  const txData: FrameTransactionEthSendParams = {
-    // chainId: `eip155:${base.id}`, // Remember Base Sepolia might not work on Warpcast yet
-    data: data,
-    abi: abi,
-    to: contractAddress,
-    value: '0',
+  const txData: FrameTransactionResponse = {
+    chainId: `eip155:${base.id}`, // Remember Base Sepolia might not work on Warpcast yet
+    method: 'eth_sendTransaction',
+    params: {
+      abi: abi,
+      data: data,
+      to: contractAddress,
+      value: '0',
+    },
   };
   return NextResponse.json(txData);
 }
